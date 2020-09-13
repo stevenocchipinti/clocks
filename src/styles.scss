@@ -1,4 +1,6 @@
 :root {
+  --degrees: 359.75deg;
+
   --main-bg-color: coral;
   --bright-day: #1cafeb;
   --light-day: #6ab0dc;
@@ -79,8 +81,12 @@ body {
 
 .pin {
   @include circle(5.5em);
-    z-index: -1;
-    animation: spin infinite 4s linear;
+  z-index: -1;
+  transform: rotate(calc(225deg + var(--degrees)));
+
+  // For demo purposes only:
+  // animation: spin infinite 4s linear;
+
   &:after {
     content: "";
     width: 40px;
