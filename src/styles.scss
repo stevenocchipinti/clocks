@@ -1,13 +1,68 @@
 :root {
-  --degrees: 359.75deg;
+  --degrees: 180deg;
 
-  --main-bg-color: coral;
-  --bright-day: #1cafeb;
-  --light-day: #6ab0dc;
-  --sunrise: #d89396;
-  --sunset: #d89396;
-  --light-night: #454f95;
-  --dark-night: #201f50;
+  --nadir-color: #263238;
+  --nightEnd-color: #37474f;
+  --nauticalDawn-color: #f57c00;
+  --dawn-color: #fb8c00;
+  --sunrise-color: #ff9800;
+  --sunriseEnd-color: #ffa726;
+  --goldenHourEnd-color: #fff59d;
+
+  --solarNoon-color: #4fc3f7;
+  --goldenHour-color: #fff59d;
+  --sunsetStart-color: #90a4ae;
+  --sunset-color: #78909c;
+  --dusk-color: #607d8b;
+  --nauticalDusk-color: #546e7a;
+  --night-color: #37474f;
+
+  --nadir-deg: 4.25deg;
+  --nightEnd-deg: 74deg;
+  --nauticalDawn-deg: 81.75deg;
+  --dawn-deg: 89.25deg;
+  --sunrise-deg: 95.75deg;
+  --sunriseEnd-deg: 96.50deg;
+  --goldenHourEnd-deg: 104.50deg;
+
+  --solarNoon-deg: 184.25deg;
+  --goldenHour-deg: 264deg;
+  --sunsetStart-deg: 272deg;
+  --sunset-deg: 272.75deg;
+  --dusk-deg: 279.25deg;
+  --nauticalDusk-deg: 286.75deg;
+  --night-deg: 294.50deg;
+
+}
+
+.gradient {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  border-radius: 50%;
+  transform: rotate(180deg);
+  // filter: blur(0.5rem);
+
+    // var(--nauticalDawn-color) var(--nauticalDawn-deg),
+    // var(--dawn-color) var(--dawn-deg),
+    // var(--sunrise-color) var(--sunrise-deg),
+    // var(--sunriseEnd-color) var(--sunriseEnd-deg),
+    //
+    // var(--sunsetStart-color) var(--sunsetStart-deg),
+    // var(--sunset-color) var(--sunset-deg),
+    // var(--dusk-color) var(--dusk-deg),
+    // var(--nauticalDawn-color) var(--nauticalDawn-deg),
+
+  background: conic-gradient(
+    from var(--nadir-deg),
+    var(--nadir-color),
+    var(--nightEnd-color) var(--nightEnd-deg),
+    var(--goldenHourEnd-color) var(--goldenHourEnd-deg),
+    var(--solarNoon-color) var(--solarNoon-deg),
+    var(--goldenHour-color) var(--goldenHour-deg),
+    var(--night-color) var(--night-deg),
+    var(--nadir-color),
+  );
 }
 
 @mixin circle($size) {
@@ -81,6 +136,7 @@ body {
 
 .pin {
   @include circle(5.5em);
+  transition: 1s all;
   z-index: -1;
   transform: rotate(calc(225deg + var(--degrees)));
 
@@ -99,25 +155,6 @@ body {
     left: 6px;
     top: 10px;
   }
-}
-
-.gradient {
-  width: 100%;
-  height: 100%;
-  position: absolute;
-  border-radius: 50%;
-  filter: blur(0.5rem);
-  background: conic-gradient(
-    var(--bright-day),
-    var(--light-day) calc(90deg - 15deg),
-    var(--sunset) 90deg,
-    var(--light-night) calc(90deg + 15deg),
-    var(--dark-night) 180deg,
-    var(--light-night) calc(270deg - 15deg),
-    var(--sunrise) 270deg,
-    var(--light-day) calc(270deg + 15deg),
-    var(--bright-day)
-  );
 }
 
 @keyframes spin {
