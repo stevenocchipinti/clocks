@@ -1,21 +1,30 @@
 :root {
   --degrees: 180deg;
 
-  --nadir-color: #263238;
-  --nightEnd-color: #37474f;
-  --nauticalDawn-color: #f57c00;
-  --dawn-color: #fb8c00;
-  --sunrise-color: #ff9800;
-  --sunriseEnd-color: #ffa726;
-  --goldenHourEnd-color: #fff59d;
+  /* This forms a rough scale from mignight to midday */
+  --midnight: #1d2529;
+  --midnightish: #294552;
+  --darkblueish: #0b16ec;
+  --purpleish: #924dff;
+  --orangeish: #e0b10e;
+  --yellowish: #f3ff00;
+  --middayish: #b9feff;
+  --midday: #00d6ff;
 
-  --solarNoon-color: #4fc3f7;
-  --goldenHour-color: #fff59d;
-  --sunsetStart-color: #90a4ae;
-  --sunset-color: #78909c;
-  --dusk-color: #607d8b;
-  --nauticalDusk-color: #546e7a;
-  --night-color: #37474f;
+  --nadir-color: var(--midnight);
+  --nightEnd-color: var(--midnightish);
+  --nauticalDawn-color: var(--darkblueish);
+  --dawn-color: var(--purpleish);
+  --sunrise-color: var(--orangeish);
+  --sunriseEnd-color: var(--yellowish);
+  --goldenHourEnd-color: var(--middayish);
+  --solarNoon-color: var(--midday);
+  --goldenHour-color: var(--middayish);
+  --sunsetStart-color: var(--yellowish);
+  --sunset-color: var(--orangeish);
+  --dusk-color: var(--purpleish);
+  --nauticalDusk-color: var(--darkblueish);
+  --night-color: var(--midnightish);
 
   --nadir-deg: 4.25deg;
   --nightEnd-deg: 74deg;
@@ -24,7 +33,6 @@
   --sunrise-deg: 95.75deg;
   --sunriseEnd-deg: 96.50deg;
   --goldenHourEnd-deg: 104.50deg;
-
   --solarNoon-deg: 184.25deg;
   --goldenHour-deg: 264deg;
   --sunsetStart-deg: 272deg;
@@ -41,26 +49,28 @@
   position: absolute;
   border-radius: 50%;
   transform: rotate(180deg);
-  // filter: blur(0.5rem);
-
-    // var(--nauticalDawn-color) var(--nauticalDawn-deg),
-    // var(--dawn-color) var(--dawn-deg),
-    // var(--sunrise-color) var(--sunrise-deg),
-    // var(--sunriseEnd-color) var(--sunriseEnd-deg),
-    //
-    // var(--sunsetStart-color) var(--sunsetStart-deg),
-    // var(--sunset-color) var(--sunset-deg),
-    // var(--dusk-color) var(--dusk-deg),
-    // var(--nauticalDawn-color) var(--nauticalDawn-deg),
+  filter: blur(0.3rem);
 
   background: conic-gradient(
     from var(--nadir-deg),
     var(--nadir-color),
+
     var(--nightEnd-color) var(--nightEnd-deg),
+    var(--nauticalDawn-color) var(--nauticalDawn-deg),
+    var(--dawn-color) var(--dawn-deg),
+    var(--sunrise-color) var(--sunrise-deg),
+    var(--sunriseEnd-color) var(--sunriseEnd-deg),
     var(--goldenHourEnd-color) var(--goldenHourEnd-deg),
+
     var(--solarNoon-color) var(--solarNoon-deg),
+
     var(--goldenHour-color) var(--goldenHour-deg),
+    var(--sunsetStart-color) var(--sunsetStart-deg),
+    var(--sunset-color) var(--sunset-deg),
+    var(--dusk-color) var(--dusk-deg),
+    var(--nauticalDawn-color) var(--nauticalDawn-deg),
     var(--night-color) var(--night-deg),
+
     var(--nadir-color),
   );
 }
