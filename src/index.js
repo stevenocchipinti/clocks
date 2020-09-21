@@ -1,24 +1,27 @@
 import suncalc from "suncalc"
-import dateToDegrees from "./dateToDegrees"
 
-const setProp = (name, value) => {
-  document.documentElement.style.setProperty(name, value)
+export const dateToDegrees = date => {
+  const minutesInOneDay = 24 * 60
+  const minutesFromMidday = date.getHours() * 60 + date.getMinutes()
+  const percentageOfDay = minutesFromMidday / minutesInOneDay
+  const degrees = 360 * percentageOfDay
+  return degrees
 }
 
+const setCssVar = (name, value) =>
+  document.documentElement.style.setProperty(name, value)
+
 const setGradient = ({ nadir, ...times }) => {
-  setProp("--nadir-deg", `${dateToDegrees(nadir)}deg`)
+  setCssVar("--nadir-deg", `${dateToDegrees(nadir)}deg`)
   Object.keys(times).forEach(time =>
-    setProp(
+    setCssVar(
       `--${time}-deg`,
       `calc(${dateToDegrees(times[time])}deg - ${dateToDegrees(nadir)}deg)`
     )
   )
 }
 
-const movePin = () => {
-  setProp("--degrees", `${dateToDegrees(new Date())}deg`)
-}
-
+const movePin = () => setCssVar("--now", `${dateToDegrees(new Date())}deg`)
 movePin()
 setInterval(movePin, 60000)
 

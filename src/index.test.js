@@ -1,4 +1,4 @@
-import dateToDegrees from "./dateToDegrees"
+import { dateToDegrees } from "."
 
 const dateFromTime = str => new Date(Date.parse(`01-01-2020 ${str}`))
 

@@ -1,6 +1,4 @@
 :root {
-  --degrees: 180deg;
-
   /* This forms a rough scale from mignight to midday */
   --midnight: #1d2529;
   --midnightish: #294552;
@@ -26,27 +24,6 @@
   --dusk-color: var(--purpleish);
   --nauticalDusk-color: var(--darkblueish);
   --night-color: var(--midnightish);
-
-  /* These are Melbourne defaults but will be updated via JS */
-  --nadir-deg: 0deg;
-  --nightEnd-deg: 30deg;
-
-  --nauticalDawn-deg: 54deg;
-  --dawn-deg: 78deg;
-  --sunrise-deg: 102deg;
-  --sunriseEnd-deg: 126deg;
-
-  --goldenHourEnd-deg: 150deg;
-  --solarNoon-deg: 180deg;
-  --goldenHour-deg: 210deg;
-
-  --sunsetStart-deg: 234deg;
-  --sunset-deg: 258deg;
-  --dusk-deg: 282deg;
-  --nauticalDusk-deg: 306deg;
-
-  --night-deg: 330deg;
-
 }
 
 .gradient {
@@ -58,24 +35,24 @@
   filter: blur(0.3rem);
 
   background: conic-gradient(
-    from var(--nadir-deg),
+    from var(--nadir-deg, 0deg),
     var(--nadir-color),
 
-    var(--nightEnd-color) var(--nightEnd-deg),
-    var(--nauticalDawn-color) var(--nauticalDawn-deg),
-    var(--dawn-color) var(--dawn-deg),
-    var(--sunrise-color) var(--sunrise-deg),
-    var(--sunriseEnd-color) var(--sunriseEnd-deg),
-    var(--goldenHourEnd-color) var(--goldenHourEnd-deg),
+    var(--nightEnd-color) var(--nightEnd-deg, 30deg),
+    var(--nauticalDawn-color) var(--nauticalDawn-deg, 54deg),
+    var(--dawn-color) var(--dawn-deg, 78deg),
+    var(--sunrise-color) var(--sunrise-deg, 102deg),
+    var(--sunriseEnd-color) var(--sunriseEnd-deg, 126deg),
+    var(--goldenHourEnd-color) var(--goldenHourEnd-deg, 150deg),
 
-    var(--solarNoon-color) var(--solarNoon-deg),
+    var(--solarNoon-color) var(--solarNoon-deg, 180deg),
 
-    var(--goldenHour-color) var(--goldenHour-deg),
-    var(--sunsetStart-color) var(--sunsetStart-deg),
-    var(--sunset-color) var(--sunset-deg),
-    var(--dusk-color) var(--dusk-deg),
-    var(--nauticalDawn-color) var(--nauticalDawn-deg),
-    var(--night-color) var(--night-deg),
+    var(--goldenHour-color) var(--goldenHour-deg, 210deg),
+    var(--sunsetStart-color) var(--sunsetStart-deg, 234deg),
+    var(--sunset-color) var(--sunset-deg, 258deg),
+    var(--dusk-color) var(--dusk-deg, 282deg),
+    var(--nauticalDawn-color) var(--nauticalDawn-deg, 306deg),
+    var(--night-color) var(--night-deg, 0deg),
 
     var(--nadir-color),
   );
@@ -154,7 +131,7 @@ body {
   @include circle(5.5em);
   transition: 1s all;
   z-index: -1;
-  transform: rotate(calc(225deg + var(--degrees)));
+  transform: rotate(calc(225deg + var(--now, 180deg)));
 
   // For demo purposes only:
   // animation: spin infinite 4s linear;
