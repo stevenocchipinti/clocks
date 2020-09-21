@@ -11,7 +11,8 @@ export const dateToDegrees = date => {
 const setCssVar = (name, value) =>
   document.documentElement.style.setProperty(name, value)
 
-const setGradient = ({ nadir, ...times }) => {
+const setGradient = ({ latitude, longitude }) => {
+  const { nadir, ...times } = suncalc.getTimes(new Date(), latitude, longitude)
   setCssVar("--nadir-deg", `${dateToDegrees(nadir)}deg`)
   Object.keys(times).forEach(time =>
     setCssVar(
@@ -21,15 +22,22 @@ const setGradient = ({ nadir, ...times }) => {
   )
 }
 
+// Move the pin to reflect the current percentage of the day (24 hour cycle)
 const movePin = () => setCssVar("--now", `${dateToDegrees(new Date())}deg`)
 movePin()
 setInterval(movePin, 60000)
 
+// Use the coords from lasttime to prevent a flash of the default gradient
+const latitude = localStorage.getItem("latitude")
+const longitude = localStorage.getItem("longitude")
+if (latitude && longitude) setGradient({ latitude, longitude })
+
+// Request and use the real coords from the user and save them for next time
 if (navigator.geolocation) {
   navigator.geolocation.getCurrentPosition(position => {
-    const lat = position.coords.latitude
-    const lon = position.coords.longitude
-    const times = suncalc.getTimes(new Date(), lat, lon)
-    setGradient(times)
+    const { latitude, longitude } = position.coords
+    setGradient({ latitude, longitude })
+    localStorage.setItem("latitude", latitude)
+    localStorage.setItem("longitude", longitude)
   })
 }
