@@ -11,6 +11,7 @@
   --middayish: #b9feff;
   --midday: #00d6ff;
 
+  /* Map the times to the scale */
   --nadir-color: var(--midnight);
   --nightEnd-color: var(--midnightish);
   --nauticalDawn-color: var(--darkblueish);
@@ -26,20 +27,25 @@
   --nauticalDusk-color: var(--darkblueish);
   --night-color: var(--midnightish);
 
-  --nadir-deg: 4.25deg;
-  --nightEnd-deg: 74deg;
-  --nauticalDawn-deg: 81.75deg;
-  --dawn-deg: 89.25deg;
-  --sunrise-deg: 95.75deg;
-  --sunriseEnd-deg: 96.50deg;
-  --goldenHourEnd-deg: 104.50deg;
-  --solarNoon-deg: 184.25deg;
-  --goldenHour-deg: 264deg;
-  --sunsetStart-deg: 272deg;
-  --sunset-deg: 272.75deg;
-  --dusk-deg: 279.25deg;
-  --nauticalDusk-deg: 286.75deg;
-  --night-deg: 294.50deg;
+  /* These are Melbourne defaults but will be updated via JS */
+  --nadir-deg: 0deg;
+  --nightEnd-deg: 30deg;
+
+  --nauticalDawn-deg: 54deg;
+  --dawn-deg: 78deg;
+  --sunrise-deg: 102deg;
+  --sunriseEnd-deg: 126deg;
+
+  --goldenHourEnd-deg: 150deg;
+  --solarNoon-deg: 180deg;
+  --goldenHour-deg: 210deg;
+
+  --sunsetStart-deg: 234deg;
+  --sunset-deg: 258deg;
+  --dusk-deg: 282deg;
+  --nauticalDusk-deg: 306deg;
+
+  --night-deg: 330deg;
 
 }
 
