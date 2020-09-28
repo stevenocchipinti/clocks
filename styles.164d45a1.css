@@ -1,0 +1,164 @@
+:root {
+  /* This forms a rough scale from mignight to midday */
+  --midnight: #1d2529;
+  --midnightish: #294552;
+  --darkblueish: #0b16ec;
+  --purpleish: #924dff;
+  --orangeish: #e0b10e;
+  --yellowish: #f3ff00;
+  --middayish: #b9feff;
+  --midday: #00d6ff;
+  /* Map the times to the scale */
+  --nadir-color: var(--midnight);
+  --nightEnd-color: var(--midnightish);
+  --nauticalDawn-color: var(--darkblueish);
+  --dawn-color: var(--purpleish);
+  --sunrise-color: var(--orangeish);
+  --sunriseEnd-color: var(--yellowish);
+  --goldenHourEnd-color: var(--middayish);
+  --solarNoon-color: var(--midday);
+  --goldenHour-color: var(--middayish);
+  --sunsetStart-color: var(--yellowish);
+  --sunset-color: var(--orangeish);
+  --dusk-color: var(--purpleish);
+  --nauticalDusk-color: var(--darkblueish);
+  --night-color: var(--midnightish);
+}
+
+.gradient {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  border-radius: 50%;
+  transform: rotate(180deg);
+  filter: blur(0.3rem);
+  background: conic-gradient(from var(--nadir-deg, 0deg), var(--nadir-color), var(--nightEnd-color) var(--nightEnd-deg, 30deg), var(--nauticalDawn-color) var(--nauticalDawn-deg, 54deg), var(--dawn-color) var(--dawn-deg, 78deg), var(--sunrise-color) var(--sunrise-deg, 102deg), var(--sunriseEnd-color) var(--sunriseEnd-deg, 126deg), var(--goldenHourEnd-color) var(--goldenHourEnd-deg, 150deg), var(--solarNoon-color) var(--solarNoon-deg, 180deg), var(--goldenHour-color) var(--goldenHour-deg, 210deg), var(--sunsetStart-color) var(--sunsetStart-deg, 234deg), var(--sunset-color) var(--sunset-deg, 258deg), var(--dusk-color) var(--dusk-deg, 282deg), var(--nauticalDawn-color) var(--nauticalDawn-deg, 306deg), var(--night-color) var(--night-deg, 0deg), var(--nadir-color));
+}
+
+body {
+  min-height: 100vh;
+  background-image: linear-gradient(to bottom, #111, #555);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.clock {
+  margin: 30px auto 0;
+  width: 13em;
+  height: 13em;
+  border-radius: 3em;
+  position: relative;
+  background-image: linear-gradient(to bottom, #ddd, #d5d5d5);
+  box-shadow: inset 0 3px 7px 0px #FFF, inset 0 -5px 5px 0px rgba(0, 0, 0, 0.2), 0 27px 51px -10px rgba(0, 0, 0, 0.5);
+}
+.clock:before, .clock:after {
+  box-sizing: border-box;
+  display: block;
+}
+.clock:before {
+  content: "";
+  position: absolute;
+  border-radius: 50%;
+  left: calc(50% - 6.25em);
+  top: calc(50% - 6.25em);
+  width: 12.5em;
+  height: 12.5em;
+  background-image: linear-gradient(to bottom, #fff, #aaa);
+  filter: blur(4px);
+}
+.clock:after {
+  content: "";
+  position: absolute;
+  border-radius: 50%;
+  left: calc(50% - 5.5em);
+  top: calc(50% - 5.5em);
+  width: 11em;
+  height: 11em;
+  background-image: linear-gradient(to bottom, #c5c5c5, #ddd 80%);
+  box-shadow: 0 4px 28px -10px rgba(0, 0, 0, 0.2);
+}
+
+.wheel {
+  content: "";
+  position: absolute;
+  border-radius: 50%;
+  left: calc(50% - 4.75rem);
+  top: calc(50% - 4.75rem);
+  width: 9.5rem;
+  height: 9.5rem;
+  display: block;
+  z-index: 1;
+  box-shadow: inset 0 16px 32px 14px rgba(0, 0, 0, 0.7);
+}
+
+.center {
+  content: "";
+  position: absolute;
+  border-radius: 50%;
+  left: calc(50% - 3.15em);
+  top: calc(50% - 3.15em);
+  width: 6.3em;
+  height: 6.3em;
+  z-index: 2;
+  background-image: linear-gradient(to bottom, #eee, #ccc);
+  box-shadow: inset 0 3px 7px 0px #FFF, 0 25px 30px -5px rgba(0, 0, 0, 0.5);
+}
+.center:before {
+  content: "";
+  position: absolute;
+  border-radius: 50%;
+  left: calc(50% - 2.1em);
+  top: calc(50% - 2.1em);
+  width: 4.2em;
+  height: 4.2em;
+  background-image: linear-gradient(to bottom, #FFF 20%, #AAA);
+  box-shadow: 0 25px 30px -5px rgba(0, 0, 0, 0.5);
+}
+.center:after {
+  content: "";
+  position: absolute;
+  border-radius: 50%;
+  left: calc(50% - 1.5em);
+  top: calc(50% - 1.5em);
+  width: 3em;
+  height: 3em;
+  background-image: linear-gradient(to bottom, #aaa, #f5f5f5 80%);
+  box-shadow: inset 0 -1px 4px 0px #FFF;
+}
+
+.pin {
+  content: "";
+  position: absolute;
+  border-radius: 50%;
+  left: calc(50% - 2.75em);
+  top: calc(50% - 2.75em);
+  width: 5.5em;
+  height: 5.5em;
+  transition: 1s all;
+  z-index: -1;
+  transform: rotate(calc(225deg + var(--now, 180deg)));
+}
+.pin:after {
+  content: "";
+  width: 40px;
+  height: 40px;
+  transform: rotate(10deg) skew(40deg, 20deg);
+  box-shadow: inset 0px 0px 4px 1px rgba(0, 0, 0, 0.1), 0 0 15px 3px rgba(0, 0, 0, 0.2);
+  background: #FFF;
+  position: absolute;
+  z-index: -1;
+  left: 6px;
+  top: 10px;
+}
+
+@keyframes spin {
+  from {
+    -webkit-transform: rotate(0deg);
+  }
+  to {
+    -webkit-transform: rotate(360deg);
+  }
+}
+
+/*# sourceMappingURL=/styles.164d45a1.css.map */
