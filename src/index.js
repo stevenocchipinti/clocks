@@ -1,5 +1,13 @@
 import suncalc from "suncalc"
 
+const printToConsole = times => {
+  console.table(
+    Object.keys(times)
+      .reduce((a, key) => [...a, { key, datetime: times[key] }], [])
+      .sort((a, b) => a.datetime - b.datetime)
+  )
+}
+
 export const dateToDegrees = date => {
   const minutesInOneDay = 24 * 60
   const minutesFromMidday = date.getHours() * 60 + date.getMinutes()
@@ -13,6 +21,7 @@ const setCssVar = (name, value) =>
 
 const setGradient = ({ latitude, longitude }) => {
   const { nadir, ...times } = suncalc.getTimes(new Date(), latitude, longitude)
+  printToConsole({ nadir, ...times })
   setCssVar("--nadir-deg", `${dateToDegrees(nadir)}deg`)
   Object.keys(times).forEach(time =>
     setCssVar(
